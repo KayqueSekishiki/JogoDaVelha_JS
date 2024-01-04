@@ -42,6 +42,7 @@ function checkWinner() {
   checkSquareSequence(square3, square6, square9);
   checkSquareSequence(square1, square5, square9);
   checkSquareSequence(square3, square5, square7);
+  checkDrawGame();
 }
 
 function checkSequence(square1, square2, square3) {
@@ -75,6 +76,28 @@ function changeSquareBackground(square1, square2, square3) {
   square1.style.background = "#00f00f";
   square2.style.background = "#00f00f";
   square3.style.background = "#00f00f";
+}
+
+function checkDrawGame(id) {
+  if (winner) return;
+  if (
+    squares[0].innerHTML !== "-" &&
+    squares[1].innerHTML !== "-" &&
+    squares[2].innerHTML !== "-" &&
+    squares[3].innerHTML !== "-" &&
+    squares[4].innerHTML !== "-" &&
+    squares[5].innerHTML !== "-" &&
+    squares[6].innerHTML !== "-" &&
+    squares[7].innerHTML !== "-" &&
+    squares[8].innerHTML !== "-"
+  ) {
+    for (let i = 0; i < squares.length; i++) {
+      const square = squares[i];
+      square.style.background = "#FF0000";
+      winner = "Velha";
+      selectedWinner.innerHTML = winner;
+    }
+  }
 }
 
 function restatGame() {
