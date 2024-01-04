@@ -7,7 +7,7 @@ let winner;
 function choiceSquare(id) {
   let square = document.getElementById(id);
 
-  if (square.innerHTML !== "") return;
+  if (square.innerHTML !== "-") return;
 
   square.innerText = player;
   square.style.color = "#000000";
@@ -94,7 +94,7 @@ function checkSequence(square1, square2, square3) {
   let isEqual = false;
 
   if (
-    square1.innerHTML !== "" &&
+    square1.innerHTML !== "-" &&
     square1.innerHTML === square2.innerHTML &&
     square2.innerHTML === square3.innerHTML
   ) {
@@ -108,6 +108,19 @@ function changeSquareBackground(square1, square2, square3) {
   square1.style.background = "#00f00f";
   square2.style.background = "#00f00f";
   square3.style.background = "#00f00f";
+}
+
+function restatGame() {
+  selectPlayer("X");
+  winner = "";
+  selectedWinner.innerHTML = "";
+
+  for (let i = 1; i <= 9; i++) {
+    let square = document.getElementById(i);
+    square.style.background = "#eeeeee";
+    square.style.color = "#eeeeee";
+    square.innerText = "";
+  }
 }
 
 selectPlayer("X");
