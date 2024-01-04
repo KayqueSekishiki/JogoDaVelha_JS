@@ -5,8 +5,9 @@ let player;
 let winner;
 
 function choiceSquare(id) {
-  let square = document.getElementById(id);
+  if (winner) return;
 
+  let square = document.getElementById(id);
   if (square.innerHTML !== "-") return;
 
   square.innerText = player;
@@ -33,61 +34,14 @@ function checkWinner() {
   let square8 = document.getElementById(8);
   let square9 = document.getElementById(9);
 
-  if (checkSequence(square1, square2, square3)) {
-    changeSquareBackground(square1, square2, square3);
-    winner = square1.innerHTML;
-    selectedWinner.innerHTML = winner;
-    return;
-  }
-
-  if (checkSequence(square4, square5, square6)) {
-    changeSquareBackground(square4, square5, square6);
-    winner = square4.innerHTML;
-    selectedWinner.innerHTML = winner;
-    return;
-  }
-
-  if (checkSequence(square7, square8, square9)) {
-    changeSquareBackground(square7, square8, square9);
-    winner = square7.innerHTML;
-    selectedWinner.innerHTML = winner;
-    return;
-  }
-
-  if (checkSequence(square1, square4, square7)) {
-    changeSquareBackground(square1, square4, square7);
-    winner = square1.innerHTML;
-    selectedWinner.innerHTML = winner;
-    return;
-  }
-
-  if (checkSequence(square5, square5, square8)) {
-    changeSquareBackground(square2, square5, square5);
-    winner = square2.innerHTML;
-    selectedWinner.innerHTML = winner;
-    return;
-  }
-
-  if (checkSequence(square3, square6, square9)) {
-    changeSquareBackground(square3, square6, square9);
-    winner = square3.innerHTML;
-    selectedWinner.innerHTML = winner;
-    return;
-  }
-
-  if (checkSequence(square1, square5, square9)) {
-    changeSquareBackground(square1, square5, square9);
-    winner = square1.innerHTML;
-    selectedWinner.innerHTML = winner;
-    return;
-  }
-
-  if (checkSequence(square3, square5, square7)) {
-    changeSquareBackground(square3, square5, square7);
-    winner = square3.innerHTML;
-    selectedWinner.innerHTML = winner;
-    return;
-  }
+  checkSquareSequence(square1, square2, square3);
+  checkSquareSequence(square4, square5, square6);
+  checkSquareSequence(square7, square8, square9);
+  checkSquareSequence(square1, square4, square7);
+  checkSquareSequence(square2, square5, square8);
+  checkSquareSequence(square3, square6, square9);
+  checkSquareSequence(square1, square5, square9);
+  checkSquareSequence(square3, square5, square7);
 }
 
 function checkSequence(square1, square2, square3) {
@@ -102,6 +56,19 @@ function checkSequence(square1, square2, square3) {
   }
 
   return isEqual;
+}
+
+function changeWinner(square) {
+  winner = square.innerHTML;
+  selectedWinner.innerHTML = winner;
+}
+
+function checkSquareSequence(square1, square2, square3) {
+  if (checkSequence(square1, square2, square3)) {
+    changeSquareBackground(square1, square2, square3);
+    changeWinner(square1);
+    return;
+  }
 }
 
 function changeSquareBackground(square1, square2, square3) {
@@ -119,7 +86,7 @@ function restatGame() {
     let square = document.getElementById(i);
     square.style.background = "#eeeeee";
     square.style.color = "#eeeeee";
-    square.innerText = "";
+    square.innerText = "-";
   }
 }
 

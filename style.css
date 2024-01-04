@@ -5,8 +5,7 @@ body {
 .square {
   text-align: center;
   width: 50px;
-  height: 60px;
-  background-color: #eeeeee;
+  background-color: #eee;
   display: inline-block;
   padding: 40px;
   font-size: 60px;
@@ -25,6 +24,6 @@ button {
   margin-top: 10px;
   width: 100px;
   height: 30px;
-  background-color: #eeeeee;
+  background: #eee;
   cursor: pointer;
 }
