@@ -90,4 +90,9 @@ function restatGame() {
   }
 }
 
-selectPlayer("X");
+function initialRandomPlayer() {
+  let randomNumber = Math.floor(Math.random() * 100);
+  randomNumber % 2 === 0 ? selectPlayer("X") : selectPlayer("O");
+}
+
+initialRandomPlayer();
